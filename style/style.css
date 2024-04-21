@@ -2,8 +2,11 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   color: #461e1e;
-  background-color: rgb(163, 214, 221);
+  background-image: url(https://t3.ftcdn.net/jpg/00/94/87/42/360_F_94874253_VtNH5YWvi3SRyehujjcKBwOSmKalQTdm.jpg);
+  position: relative;
 }
+
+/* -----------------navbar----------------- */
 
 .navbar {
   display: flex;
@@ -31,12 +34,15 @@ body {
 }
 
 
-
+/* -----------------footer----------------- */
 
 footer {
   background-color: #231750;
   color:rgb(233, 219, 21);
-  margin-top: 600px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
 }
 
 .footer-content {
@@ -82,4 +88,74 @@ footer {
 .footer-copyright {
   font-size: 0.9em;
   padding-right: 2%;
+}
+
+
+
+#uvod-text {
+  display: flex;
+  flex-direction: row;
+}
+#uvod-text div{
+  padding: 10% 15% 5% 10%;
+  font-size: 25px;
+}
+#obr {
+  width: 20%;
+}
+#uvod-text img {
+  padding: 5% 0% 5% 5%;
+  max-width: 30vw;
+  max-height: 40vw;
+}
+
+#uvod-text2 {
+  display: flex;
+}
+#uvod-text2 div{
+  padding: 5% 0% 5% 10%;
+  font-size: 25px;
+}
+#obr2 {
+  /*width: 40%;*/
+}
+#uvod-text2 img{
+  padding: 5% 0% 5% 0%;
+  max-width: 50vw;
+  max-height: 50vw;
+}
+
+
+/* -----------------tabulka.php----------------- */
+
+body {
+  padding-bottom: 15%;
+}
+table {
+  width: 70%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  margin-top: 6%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #b9b9b9;
+  font-weight: bold;
+}
+
+tr:nth-child(odd) {
+  background-color: #fff;
+}
+tr:nth-child(even) {
+  background-color: #e1eff8;
+}
+
+tr:hover {
+  background-color: #d6e9d2;
 }
