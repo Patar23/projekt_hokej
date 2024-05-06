@@ -6,7 +6,7 @@
     <title>Hokej</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" type='text/css' href="style/style.css">
-    <script src='main.js'></script>
+    <script src='js/main.js'></script>
     <div class="navbar">
         <a href="index.php">Domov</a>
         <a href="#home">Tímy</a>
@@ -14,7 +14,7 @@
     <div class="logo">
         <a href="#"><img src="https://www.hockeyslovakia.sk/Upload/Gallery/Image/439,24813/custom/ceska-elh.png" alt="Logo"></a>
     </div>
-        <a href="#home">Vstupenky</a>
+        <a href="vstupenky.php">Vstupenky</a>
         <a href="#home">Suveníry</a>
         <a href="#home">Kontakt</a>
     </div>
