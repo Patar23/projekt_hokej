@@ -27,8 +27,36 @@
             <img src="img/hrac2.png" alt="" >
         </div>
     </div>
+
+
+<?php
+    $news = [
+        [
+            'title' => 'HC Dynamo Pardubice vyhráva zápas proti HC Sparta Praha',
+            'content' => 'V napínavom zápase sa HC Dynamo Pardubice podarilo zvíťaziť nad HC Sparta Praha s výsledkom 4:3.',
+            'date' => '28-05-2024'
+        ],
+        [
+            'title' => 'Mladé talenty sa ukazujú v mládežníckych tímoch',
+            'content' => 'Mládežnícke tímy tento týždeň ukázali veľa talentu a potenciálu, čo je prísľubom do budúcnosti českej hokejovej scény.',
+            'date' => '27-05-2024'
+        ],
+    ];
+    ?>
+
+    <div id="news">
+        <h1>Najnovšie správy</h1>
+        <?php foreach ($news as $newsItem): ?>
+            <div class="news-item">
+                <h3><?php echo $newsItem['title']; ?></h3>
+                <p><?php echo $newsItem['content']; ?></p>
+                <small><?php echo $newsItem['date']; ?></small>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
 </body>
 
 <?php
-    include "partials/footer.php"
+include "partials/footer.php";
 ?>

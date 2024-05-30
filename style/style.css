@@ -90,7 +90,7 @@ footer {
   padding-right: 2%;
 }
 
-
+/* -----------------index.php----------------- */
 
 #uvod-text {
   display: flex;
@@ -123,6 +123,11 @@ footer {
   padding: 5% 0% 5% 0%;
   max-width: 50vw;
   max-height: 50vw;
+}
+
+#news {
+  padding-left: 30%;
+  text-align: left;
 }
 
 

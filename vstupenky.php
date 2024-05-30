@@ -1,27 +1,40 @@
 <?php
-        require_once('partials/header.php'); 
-?>
+require_once('partials/header.php');
+require_once('Database.php');
 
+
+class Team {
+    private $conn;
+    private $table = 'timy';
+
+    public function __construct($db) {
+        $this->conn = $db;
+    }
+
+    public function getTeams() {
+        $query = 'SELECT * FROM ' . $this->table;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+
+$db = new Database();
+$conn = $db->connect();
+
+$team = new Team($conn);
+$teams = $team->getTeams();
+?>
 
 <body>
     <div class="dropdown0">
         <div class="dropdown">
             <button class="dropbtn" id="selectedOption">Vyberte tím</button>
             <div class="dropdown-content">
-                <a href="#" onclick="selectOption('HC Dynamo Pardubice')">HC Dynamo Pardubice</a>
-                <a href="#" onclick="selectOption('HC Sparta Praha')">HC Sparta Praha</a>
-                <a href="#" onclick="selectOption('HC Oceláři Třinec')">HC Oceláři Třinec</a>
-                <a href="#" onclick="selectOption('HC Kometa Brno')">HC Kometa Brno</a>
-                <a href="#" onclick="selectOption('HC VERVA Litvínov')">HC VERVA Litvínov</a>
-                <a href="#" onclick="selectOption('Banes Motor Č. Budějovice')">Banes Motor Č. Budějovice</a>
-                <a href="#" onclick="selectOption('Bílí Tygři Liberec')">Bílí Tygři Liberec</a>
-                <a href="#" onclick="selectOption('Mountfield HK')">Mountfield HK</a>
-                <a href="#" onclick="selectOption('HC VÍTKOVICE RIDERA')">HC VÍTKOVICE RIDERA</a>
-                <a href="#" onclick="selectOption('HC Olomouc')">HC Olomouc</a>
-                <a href="#" onclick="selectOption('HC Energie Karlovy Vary')">HC Energie Karlovy Vary</a>
-                <a href="#" onclick="selectOption('HC Škoda Plzeň')">HC Škoda Plzeň</a>
-                <a href="#" onclick="selectOption('BK Mladá Boleslav')">BK Mladá Boleslav</a>
-                <a href="#" onclick="selectOption('Rytíři Kladno')">Rytíři Kladno</a>
+                <?php foreach ($teams as $team): ?>
+                    <a href="#" onclick="selectOption('<?php echo $team['klub']; ?>')"><?php echo $team['klub']; ?></a>
+                <?php endforeach; ?>
             </div>
         </div>
 
@@ -45,7 +58,6 @@
             </div>
         </div>
 
-        
         <div class="dropdown">
             <button id="payButton" class="dropbtn" onclick="openModal()" disabled>Zaplatiť</button>
         </div>
