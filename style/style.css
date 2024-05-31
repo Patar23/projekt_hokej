@@ -143,6 +143,11 @@ table {
   margin-top: 6%;
 }
 
+h2 {
+  text-align: center;
+  padding-top: 5%;
+}
+
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
@@ -165,6 +170,10 @@ tr:hover {
   background-color: #d6e9d2;
 }
 
+#prihlasenie {
+  text-align: right;
+  padding-right: 15%;
+}
 /* -----------------vstupenky.php----------------- */
 
 .dropdown0 {
@@ -216,6 +225,7 @@ tr:hover {
   display: none;
   position: fixed;
   z-index: 1;
+  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -223,22 +233,73 @@ tr:hover {
   overflow: auto;
   background-color: rgba(0,0,0,0.4);
 }
-
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  max-width: 500px;
 }
-
 .close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
+.close:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+/* -----------------kontakt.php----------------- */
+
+.contact-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.contact-info {
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  margin-bottom: 20px;
+}
+
+#map {
+  margin-top: 20px;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 .close:hover, .close:focus {
   color: black;
   text-decoration: none;

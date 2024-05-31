@@ -58,29 +58,134 @@ $teams = $team->getTeams();
             </div>
         </div>
 
-        <div class="dropdown">
-            <button id="payButton" class="dropbtn" onclick="openModal()" disabled>Zaplatiť</button>
-        </div>
 
-        <p id="price">Cena: 0 €</p>
+
+
+    <div class="dropdown">
+        <button id="payButton" class="dropbtn" onclick="openModal()" disabled>Zaplatiť</button>
     </div>
 
+    <p id="price">Cena: 0 €</p>
+
+ 
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <form>
+            <form id="paymentForm" action="process_payment.php" method="post">
                 <label for="cardNumber">Číslo karty:</label>
-                <input type="text" id="cardNumber" name="cardNumber"><br><br>
+                <input type="text" id="cardNumber" name="cardNumber" required><br><br>
                 <label for="firstName">Meno:</label>
-                <input type="text" id="firstName" name="firstName"><br><br>
+                <input type="text" id="firstName" name="firstName" required><br><br>
                 <label for="lastName">Priezvisko:</label>
-                <input type="text" id="lastName" name="lastName"><br><br>
+                <input type="text" id="lastName" name="lastName" required><br><br>
                 <label for="age">Vek:</label>
-                <input type="number" id="age" name="age"><br><br>
+                <input type="number" id="age" name="age" required><br><br>
                 <button type="submit">Odoslať</button>
             </form>
         </div>
     </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConfirmationModal()">&times;</span>
+            <p id="confirmationMessage">Vaša platba bola úspešne odoslaná!</p>
+        </div>
+    </div>
+
+    <script>
+    var prices = {
+        "Permanentka": 100,
+        "Dospelý": 10,
+        "Dieťa": 5,
+        "ZŤP": 5
+    };
+
+    function updatePrice() {
+        var selectedTeam = document.getElementById("selectedOption").innerText;
+        var selectedTribune = document.getElementById("selectedOption3").innerText;
+        var selectedTicketType = document.getElementById("selectedOption2").innerText;
+
+        if (selectedTicketType === "Typ vstupenky") {
+            return;
+        }
+
+        var price = prices[selectedTicketType];
+
+        if (selectedTribune === "Vyberte tribúnu") {
+        } else if (selectedTribune === "Tribúna A" || selectedTribune === "Tribúna B") {
+            price += 20;
+        } else {
+            price += 10;
+        }
+
+        document.getElementById("price").textContent = "Cena: " + price + " €";
+        checkSelection();
+    }
+
+    function selectOption(option) {
+        document.getElementById('selectedOption').innerText = option;
+        updatePrice();
+    }
+
+    function selectOption2(option) {
+        document.getElementById('selectedOption2').innerText = option;
+        updatePrice();
+    }
+
+    function selectOption3(option) {
+        document.getElementById('selectedOption3').innerText = option;
+        updatePrice();
+    }
+
+    function openModal() {
+        document.getElementById('myModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = "none";
+    }
+
+    function openConfirmationModal(message) {
+        document.getElementById('confirmationMessage').innerText = message;
+        document.getElementById('confirmationModal').style.display = "block";
+    }
+
+    function closeConfirmationModal() {
+        document.getElementById('confirmationModal').style.display = "none";
+    }
+
+    function checkSelection() {
+        var teamSelected = document.getElementById('selectedOption').innerText !== "Vyberte tím";
+        var tribuneSelected = document.getElementById('selectedOption3').innerText !== "Vyberte tribúnu";
+        var ticketTypeSelected = document.getElementById('selectedOption2').innerText !== "Typ vstupenky";
+
+        if (teamSelected && tribuneSelected && ticketTypeSelected) {
+            document.getElementById('payButton').disabled = false;
+        } else {
+            document.getElementById('payButton').disabled = true;
+        }
+    }
+
+    checkSelection();
+
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        fetch('process_payment.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            closeModal();
+            openConfirmationModal(data);
+            this.reset();
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
 
 </body>
 
