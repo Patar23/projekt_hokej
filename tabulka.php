@@ -136,10 +136,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']): ?>
         <p id="prihlasenie"><a href="login.php">Prihlásiť sa na úpravu tabuľky</a></p>
     <?php else: ?>
-        <p><a href="logout.php">Odhlásiť sa</a></p>
+        <p id="odhlasenie"><a id="odhlasenie" href="logout.php">Odhlásiť sa</a></p>
     <?php endif; ?>
 </body>
 
 <?php
-include "partials/footer.php";
+    require_once "partials/footer.php";
 ?>

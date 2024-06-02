@@ -1,9 +1,14 @@
 
 <?php
+    setcookie("user", "fanúšik", time() + (5), "/");
     require_once('partials/header.php');
 ?>
 
 <body>
+    <?php if(isset($_COOKIE["user"])): ?>
+        <p>Vitajte späť, <?php echo $_COOKIE["user"]; ?>!</p>
+    <?php endif; ?>
+
     <div id="uvod-text">
         <div id="obr">
             <img src="img/hrac1.png" alt="" >
@@ -41,8 +46,20 @@
             'content' => 'Mládežnícke tímy tento týždeň ukázali veľa talentu a potenciálu, čo je prísľubom do budúcnosti českej hokejovej scény.',
             'date' => '27-05-2024'
         ],
+        [
+            'title' => 'HC Škoda Plzeň oslavuje významný míľnik svojej histórie',
+            'content' => 'Škoda Plzeň slávi tento týždeň 100 rokov od svojho založenia. Klub pripravuje veľkolepú oslavu s fanúšikmi, hráčmi a bývalými hviezdami tímu.',
+            'date' => '26-05-2024'
+        ],
+        [
+            'title' => 'Zranenie hlavného hráča HC Oceláři Třinec',
+            'content' => 'Hlavný útočník HC Oceláři Třinec, Peter Novák, utrpel vážne zranenie včera počas tréningu. Podľa vyhlásenia tímu bude mimo hry minimálne tri týždne.',
+            'date' => '25-05-2024'
+        ],
+
+
     ];
-    ?>
+?>
 
     <div id="news">
         <h1>Najnovšie správy</h1>
@@ -55,8 +72,9 @@
         <?php endforeach; ?>
     </div>
 
+
 </body>
 
 <?php
-include "partials/footer.php";
+    require_once "partials/footer.php";
 ?>

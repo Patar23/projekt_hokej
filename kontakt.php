@@ -2,46 +2,7 @@
 require_once('partials/header.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt - Česká hokejová Extraliga</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover, .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+
 </head>
 <body>
     <div class="contact-container">
@@ -81,7 +42,6 @@ require_once('partials/header.php');
         </div>
     </div>
 
-
     <div id="confirmationModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -89,8 +49,35 @@ require_once('partials/header.php');
         </div>
     </div>
 
- 
+
+
+<script>        
+    function showModal() {
+        document.getElementById('confirmationModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('confirmationModal').style.display = "none";
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        fetch('send_contact.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            showModal();
+            this.reset();
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+
 </body>
 <?php
-include "partials/footer.php";
+    require_once "partials/footer.php";
 ?>

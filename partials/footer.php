@@ -12,9 +12,8 @@
         <div class="footer-links">
             <h3>Odkazy:</h3>
             <ul>
-                <li><a href="#">Odkaz1</a></li>
-                <li><a href="#">Odkaz2</a></li>
-                <li><a href="#">Odkaz3</a></li>
+                <li><a href="https://pillow.sk/sport/hokej/extraliga-cz/">Suveníry</a></li>
+                <li><a href="https://www.hokej.cz/tipsport-extraliga/zapasy">Výsledky</a></li>
             </ul>
         </div>
     

@@ -9,13 +9,11 @@
     <script src='js/main.js'></script>
     <div class="navbar">
         <a href="index.php">Domov</a>
-        <a href="Team.php">Tímy</a>
         <a href="tabulka.php">Tabuľka</a>
     <div class="logo">
         <a href="#"><img src="https://www.hockeyslovakia.sk/Upload/Gallery/Image/439,24813/custom/ceska-elh.png" alt="Logo"></a>
     </div>
         <a href="vstupenky.php">Vstupenky</a>
-        <a href="#home">Suveníry</a>
         <a href="kontakt.php">Kontakt</a>
     </div>
 </head>

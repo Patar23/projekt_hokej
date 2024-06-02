@@ -2,7 +2,6 @@
 require_once('partials/header.php');
 require_once('Database.php');
 
-
 class Team {
     private $conn;
     private $table = 'timy';
@@ -28,6 +27,7 @@ $teams = $team->getTeams();
 ?>
 
 <body>
+
     <div class="dropdown0">
         <div class="dropdown">
             <button class="dropbtn" id="selectedOption">Vyberte tím</button>
@@ -59,14 +59,12 @@ $teams = $team->getTeams();
         </div>
 
 
+        <div class="dropdown">
+            <button id="payButton" class="dropbtn" onclick="openModal()" disabled>Zaplatiť</button>
+        </div>
 
-
-    <div class="dropdown">
-        <button id="payButton" class="dropbtn" onclick="openModal()" disabled>Zaplatiť</button>
+        <p id="price">Cena: 0 €</p>
     </div>
-
-    <p id="price">Cena: 0 €</p>
-
  
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -91,8 +89,26 @@ $teams = $team->getTeams();
             <p id="confirmationMessage">Vaša platba bola úspešne odoslaná!</p>
         </div>
     </div>
+    <div class="obrazky">
+        <div>
+            <img src="img/hokejka.png" alt="">
+        </div>
+        <div>
+            <img src="img/vstupenka.png" alt="">
+        </div>
+        <div>
+            <img src="img/tribuna.png" alt="">
+        </div>
+        <div>
+            <img src="img/platit.png" alt="">
+        </div>
+        <div>
+            <img src="img/cena.png" alt="">
+        </div>
+    </div>
 
-    <script>
+    
+<script>
     var prices = {
         "Permanentka": 100,
         "Dospelý": 10,
@@ -190,5 +206,5 @@ $teams = $team->getTeams();
 </body>
 
 <?php
-        include "partials/footer.php"
+        require_once "partials/footer.php"
 ?>
