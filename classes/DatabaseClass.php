@@ -1,5 +1,5 @@
 <?php
-class Database {
+class DatabaseClass {
     private $host = 'localhost';
     private $dbname = 'ceskaliga';
     private $username = 'root';

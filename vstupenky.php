@@ -1,6 +1,6 @@
 <?php
 require_once('partials/header.php');
-require_once('Database.php');
+require_once('classes/DatabaseClass.php');
 
 class Team {
     private $conn;
@@ -19,7 +19,7 @@ class Team {
 }
 
 
-$db = new Database();
+$db = new DatabaseClass();
 $conn = $db->connect();
 
 $team = new Team($conn);

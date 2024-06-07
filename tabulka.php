@@ -1,16 +1,9 @@
 <?php
 session_start();
-require_once('partials/header.php');
-require_once 'database.php';
+require_once 'partials/header.php';
+require_once 'classes/TeamClass.php';
 
-$db = new Database();
-$conn = $db->connect();
-
-$query = 'SELECT * FROM timy';
-$stmt = $conn->prepare($query);
-$stmt->execute();
-
-$teams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$kluby = new TeamClass();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action'])) {
@@ -25,19 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $skore = htmlspecialchars($_POST['skore']);
             $body = intval($_POST['body']);
 
-            $query = 'INSERT INTO timy (klub, vyhry, vp, pp, prehry, skore, body) VALUES (?, ?, ?, ?, ?, ?, ?)';
-            $stmt = $conn->prepare($query);
-            $stmt->execute([$klub, $vyhry, $vp, $pp, $prehry, $skore, $body]);
-
+            $kluby->addTeam($klub, $vyhry, $vp, $pp, $prehry, $skore, $body);
             header("Location: tabulka.php");
             exit();
         } elseif ($action == "delete") {
             $id = intval($_POST['id']);
-
-            $query = 'DELETE FROM timy WHERE id = ?';
-            $stmt = $conn->prepare($query);
-            $stmt->execute([$id]);
-
+            $kluby->deleteTeam($id);
             header("Location: tabulka.php");
             exit();
         } elseif ($action == "edit") {
@@ -50,15 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $skore = htmlspecialchars($_POST['skore']);
             $body = intval($_POST['body']);
 
-            $query = 'UPDATE timy SET klub = ?, vyhry = ?, vp = ?, pp = ?, prehry = ?, skore = ?, body = ? WHERE id = ?';
-            $stmt = $conn->prepare($query);
-            $stmt->execute([$klub, $vyhry, $vp, $pp, $prehry, $skore, $body, $id]);
-
+            $kluby->editTeam($id, $klub, $vyhry, $vp, $pp, $prehry, $skore, $body);
             header("Location: tabulka.php");
             exit();
         }
     }
 }
+
+$teams = $kluby->getTeams();
 ?>
 
 <body>
@@ -141,5 +126,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 <?php
-    require_once "partials/footer.php";
+require_once "partials/footer.php";
 ?>

@@ -1,18 +1,14 @@
 <?php
 session_start();
+require_once 'classes/LoginClass.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-
-    if ($username == "admin" && $password == "password") {
-        $_SESSION['loggedin'] = true;
-        header("Location: tabulka.php");
-        exit();
-    } else {
-        $error = "Nesprávne meno alebo heslo!";
-    }
+    $login = new LoginClass($username, $password);
+    $login->authenticate();
+    $error = $login->getError();
 }
 ?>
 

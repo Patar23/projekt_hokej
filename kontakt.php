@@ -1,20 +1,16 @@
 <?php
 require_once('partials/header.php');
-?>
+require_once('partials/autoload.php');
 
+$kontakty = new KontaktClass();
+$contacts = $kontakty->getContacts();
+?>
 
 </head>
 <body>
     <div class="contact-container">
         <h2>Kontaktujte nás</h2>
         <div class="contact-info">
-            <?php
-            $contacts = [
-                'email' => 'info@extraliga.cz',
-                'phone' => '+420 123 456 789',
-                'address' => 'Vinohradská 123, 110 00 Praha, Česká republika'
-            ];
-            ?>
             <p><strong>Email:</strong> <?php echo $contacts['email']; ?></p>
             <p><strong>Telefón:</strong> <?php echo $contacts['phone']; ?></p>
             <p><strong>Adresa:</strong> <?php echo $contacts['address']; ?></p>
@@ -49,8 +45,6 @@ require_once('partials/header.php');
         </div>
     </div>
 
-
-
 <script>        
     function showModal() {
         document.getElementById('confirmationModal').style.display = "block";
@@ -78,6 +72,8 @@ require_once('partials/header.php');
 </script>
 
 </body>
+
 <?php
-    require_once "partials/footer.php";
+require_once "partials/footer.php";
 ?>
+
